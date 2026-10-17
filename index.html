@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="FitDay">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>FitDay</title>
+</head>
+<body>
+  <header>
+    <h1 id="title">FitDay</h1>
+    <span id="streak" class="pill"></span>
+  </header>
+
+  <main id="view"></main>
+
+  <nav>
+    <button data-tab="today"><i>🏋️</i>Bugun</button>
+    <button data-tab="plan"><i>📅</i>Reja</button>
+    <button data-tab="weight"><i>⚖️</i>Vazn</button>
+    <button data-tab="me"><i>⚙️</i>Profil</button>
+  </nav>
+
+  <div id="timer" hidden>
+    <div id="timerNum">30</div>
+    <div id="timerLabel">Dam olish</div>
+    <button id="timerStop">Yopish</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

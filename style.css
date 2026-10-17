@@ -1,0 +1,76 @@
+:root {
+  --bg: #f4f7f5; --card: #fff; --text: #14231b; --muted: #6b7c72;
+  --green: #16a34a; --green-d: #15803d; --line: #e2e9e5; --warn: #f59e0b;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f1713; --card: #18231d; --text: #e8f1ec; --muted: #8fa398; --line: #263a2f; }
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+}
+header {
+  position: sticky; top: 0; z-index: 5; background: var(--green); color: #fff;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+}
+h1 { margin: 0; font-size: 20px; }
+h2 { margin: 0 0 8px; font-size: 18px; }
+.pill { background: rgba(255,255,255,.2); border-radius: 99px; padding: 4px 10px; font-size: 14px; }
+main { padding: 16px; max-width: 560px; margin: 0 auto; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
+.muted { color: var(--muted); font-size: 14px; }
+.row { display: flex; align-items: center; gap: 10px; }
+.between { justify-content: space-between; }
+.grow { flex: 1; }
+nav {
+  position: fixed; bottom: 0; left: 0; right: 0; display: flex; background: var(--card);
+  border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom);
+}
+nav button {
+  flex: 1; border: 0; background: none; color: var(--muted); padding: 8px 0 10px;
+  font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+nav button i { font-style: normal; font-size: 22px; }
+nav button.on { color: var(--green); font-weight: 600; }
+button.btn {
+  background: var(--green); color: #fff; border: 0; border-radius: 12px;
+  padding: 12px 16px; font-size: 16px; font-weight: 600; width: 100%;
+}
+button.btn.sec { background: transparent; color: var(--green); border: 1.5px solid var(--green); }
+button.btn.sm { width: auto; padding: 8px 12px; font-size: 14px; }
+input {
+  width: 100%; padding: 12px; font-size: 16px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--text);
+}
+label { display: block; font-size: 14px; color: var(--muted); margin: 10px 0 4px; }
+.ex { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--line); }
+.ex:first-of-type { border-top: 0; }
+.ex .chk {
+  width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--green);
+  flex: none; display: grid; place-items: center; background: none; color: #fff; font-size: 16px; padding: 0;
+}
+.ex.done .chk { background: var(--green); }
+.ex.done .name { text-decoration: line-through; color: var(--muted); }
+.ex .name { font-weight: 600; }
+.bar { height: 10px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.bar > div { height: 100%; background: var(--green); transition: width .3s; }
+.big { font-size: 34px; font-weight: 700; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+.week div { padding: 8px 0; border-radius: 10px; background: var(--bg); font-size: 12px; border: 1px solid var(--line); }
+.week .today { border-color: var(--green); }
+.week .ok { background: var(--green); color: #fff; border-color: var(--green); }
+.week b { display: block; font-size: 16px; }
+.log { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--line); }
+.log button { background: none; border: 0; color: var(--muted); font-size: 18px; }
+svg.chart { width: 100%; height: 160px; }
+#timer {
+  position: fixed; inset: 0; background: rgba(0,0,0,.85); color: #fff; z-index: 20;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+}
+#timer[hidden] { display: none; }
+#timerNum { font-size: 96px; font-weight: 700; }
+#timer button { background: #fff; color: #000; border: 0; border-radius: 12px; padding: 12px 28px; font-size: 16px; }
+.tip { background: #fef3c7; color: #78350f; border-radius: 12px; padding: 10px 12px; font-size: 14px; margin-bottom: 12px; }
