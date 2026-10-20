@@ -74,3 +74,39 @@ svg.chart { width: 100%; height: 160px; }
 #timerNum { font-size: 96px; font-weight: 700; }
 #timer button { background: #fff; color: #000; border: 0; border-radius: 12px; padding: 12px 28px; font-size: 16px; }
 .tip { background: #fef3c7; color: #78350f; border-radius: 12px; padding: 10px 12px; font-size: 14px; margin-bottom: 12px; }
+
+/* --- Mashq tanlash, ma'lumot oynasi, interval taymer --- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.chip { flex: none; border: 1.5px solid var(--line); background: var(--card); color: var(--text); border-radius: 99px; padding: 8px 14px; font-size: 14px; }
+.chip.on { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+button.info { border: 0; background: none; color: var(--green); font-size: 22px; padding: 0 4px; line-height: 1; flex: none; }
+button.btn small { display: block; font-weight: 400; font-size: 13px; opacity: .9; margin-top: 2px; }
+button.btn.run { margin: 12px 0 6px; }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--text); margin: 12px 0; }
+.check input { width: 24px; height: 24px; flex: none; padding: 0; accent-color: var(--green); }
+.prow { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); }
+#sheet { position: fixed; inset: 0; z-index: 30; background: rgba(0,0,0,.5); display: flex; align-items: flex-end; }
+#sheet[hidden] { display: none; }
+#sheet .panel { background: var(--card); color: var(--text); width: 100%; max-width: 560px; margin: 0 auto; max-height: 85vh; overflow-y: auto; border-radius: 20px 20px 0 0; padding: 18px 16px calc(18px + env(safe-area-inset-bottom)); }
+#sheet h3 { margin: 12px 0 4px; font-size: 15px; color: var(--muted); }
+#sheet ol { padding-left: 20px; margin: 0 0 12px; }
+#sheet li { margin-bottom: 6px; }
+#circuit { position: fixed; inset: 0; z-index: 25; color: #fff; background: #c2410c; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px 16px calc(20px + env(safe-area-inset-bottom)); text-align: center; transition: background .3s; }
+#circuit[hidden] { display: none; }
+#circuit.ready { background: #475569; }
+#circuit.warm, #circuit.cool { background: #0f766e; }
+#circuit.rest { background: #1d4ed8; }
+#circuit.done { background: #15803d; }
+#cPhase { font-size: 18px; font-weight: 700; letter-spacing: 3px; }
+#cNum { font-size: 112px; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+#cName { font-size: 26px; font-weight: 700; line-height: 1.2; max-width: 360px; }
+#cTip { font-size: 16px; opacity: .9; max-width: 360px; min-height: 2.6em; }
+#cMeta, #cNext { font-size: 14px; opacity: .9; }
+#circuit.rest #cNext { font-size: 20px; font-weight: 700; opacity: 1; }
+#cBarBox { width: 100%; max-width: 360px; height: 8px; background: rgba(255,255,255,.3); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+#cBar { height: 100%; width: 0; background: #fff; }
+#circuit .ctl { display: flex; gap: 8px; width: 100%; max-width: 360px; margin-top: 8px; }
+#circuit .ctl button { flex: 1; background: #fff; color: #111; border: 0; border-radius: 12px; padding: 13px 6px; font-size: 15px; font-weight: 600; }
+#circuit .fin { display: none; }
+#circuit.done .run { display: none; }
+#circuit.done .fin { display: flex; }
