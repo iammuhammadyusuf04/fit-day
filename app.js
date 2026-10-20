@@ -2,7 +2,7 @@
 
 // ---------- Ma'lumotlar (faqat telefonda, localStorage) ----------
 const KEY = 'fitday.v1';
-const fresh = () => ({ startDate: null, height: '', goal: '', weights: [], done: {}, pick: {}, low: true, sound: true });
+const fresh = () => ({ startDate: null, height: '', goal: '', weights: [], done: {}, pick: {}, extra: {}, low: true, sound: true });
 const save = () => localStorage.setItem(KEY, JSON.stringify(S));
 let S;
 try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch { S = fresh(); }
@@ -40,6 +40,19 @@ function cardio() {
 
 // Sakramasdan rejim yoqilgan bo‘lsa, kardio mashqning yengil varianti olinadi.
 const variant = id => { const m = MOVES[id]; return S.low && m.low ? { ...m, ...m.low } : m; };
+
+// Mashqning odatiy miqdori (daraja oshgan sari ko‘payadi).
+function amountOf(id) {
+  const m = MOVES[id], sets = m.sets || 3;
+  const n = m.n + level() * (m.step ?? (m.kind === 'reps' || m.kind === 'side' ? 2 : 5));
+  switch (m.kind) {
+    case 'reps': return `${sets} × ${n}`;
+    case 'side': return `${sets} × ${n} (har tomonga)`;
+    case 'time': return `${sets} × ${n} soniya`;
+    case 'timeside': return `${sets} × ${n} soniya (har tomonga)`;
+    default: return `${n} daqiqa`;
+  }
+}
 
 function exercises(type) {
   const l = level();
@@ -99,6 +112,17 @@ function streak() {
   return c;
 }
 
+// Bugunga qo‘shilgan qo‘shimcha mashqlar: S.extra[sana]; bajarilgani S.done da 'x:' + id bilan (reja hisobiga ta’sir qilmaydi).
+const extrasOf = date => S.extra[date] || [];
+function toggleExtra(id) {
+  const date = today(), list = extrasOf(date);
+  if (list.includes(id)) {
+    S.extra[date] = list.filter(x => x !== id);
+    S.done[date] = (S.done[date] || []).filter(x => x !== 'x:' + id);
+  } else S.extra[date] = [...list, id];
+  save();
+}
+
 // ---------- Ko‘rinishlar ----------
 const view = $('view');
 const title = $('title');
@@ -108,15 +132,32 @@ function render() {
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
   const st = streak();
   $('streak').textContent = st ? `🔥 ${st} kun` : 'Boshlaymiz!';
-  ({ today: renderToday, plan: renderPlan, weight: renderWeight, me: renderMe })[tab]();
+  ({ today: renderToday, plan: renderPlan, lib: renderLib, weight: renderWeight, me: renderMe })[tab]();
 }
 
 function runButton(type) {
-  const { work, rest, rounds } = cardio();
-  const mins = Math.round(circuitSteps(type).reduce((a, s) => a + s.secs, 0) / 60);
+  const plan = circuitPlan(type);
   return `<button class="btn run" data-run="${type}">▶ Avtomatik taymer bilan boshlash
-      <small>~${mins} daqiqa · ${rounds} raund · ${work} s ish / ${rest} s dam</small></button>
+      <small>~${planMinutes(plan)} daqiqa · ${plan.rounds} raund · ${plan.work} s ish / ${plan.rest} s dam</small></button>
     <p class="muted">Telefon ovoz va ekran bilan yo‘l ko‘rsatadi. Nafas qiyin bo‘lsa, to‘xtab dam oling.</p>`;
+}
+
+function extrasCard(date) {
+  const ids = extrasOf(date);
+  if (!ids.length) return '';
+  const n = ids.filter(id => isDone(date, 'x:' + id)).length;
+  const rows = ids.map(id => {
+    const d = isDone(date, 'x:' + id);
+    return `<div class="ex ${d ? 'done' : ''}">
+      <button class="chk" data-xex="${id}">${d ? '✓' : ''}</button>
+      <div class="grow"><div class="name">${variant(id).name}</div><div class="muted">${amountOf(id)}</div></div>
+      ${infoBtn(id)}
+      <button class="info del" data-unx="${id}" aria-label="Olib tashlash">✕</button>
+    </div>`;
+  }).join('');
+  const runnable = ids.some(id => MOVES[id].kind !== 'min');
+  return `<div class="card" style="margin-top:12px"><div class="row between"><h2>Qo‘shimcha mashqlar</h2><span class="muted">${n}/${ids.length}</span></div>
+    ${runnable ? '<button class="btn sec" data-run-extra>▶ Taymer bilan boshlash</button>' : ''}${rows}</div>`;
 }
 
 function renderToday() {
@@ -131,7 +172,7 @@ function renderToday() {
     <div class="card"><div class="row between"><h2>${LABEL[type]}</h2><span class="muted">${p.n}/${p.total}</span></div>`;
   if (type === 'R') {
     html += `<p>Bugun dam olish kuni 😴 Mushaklar tinch holatda o‘sadi. Ko‘proq suv iching va 7–8 soat uxlang.</p>
-      <p class="muted">Xohlasangiz, tepadan yengil mashg‘ulot tanlang.</p></div>`;
+      <p class="muted">Xohlasangiz, tepadan mashg‘ulot tanlang yoki “Mashqlar” bo‘limidan yengil mashq qo‘shing.</p></div>`;
   } else {
     html += `<div class="bar"><div style="width:${p.total ? p.n / p.total * 100 : 0}%"></div></div>`;
     if (CIRCUITS[type]) html += runButton(type);
@@ -149,6 +190,7 @@ function renderToday() {
       <button class="btn sec" data-timer="30">⏱ 30 soniya dam olish</button>`;
     if (p.ok) html += `<div class="card" style="margin-top:12px">🎉 Barakalla! Bugungi reja bajarildi.</div>`;
   }
+  html += extrasCard(date);
   html += `<div class="tip" style="margin-top:12px">💧 Kuniga 2 litr suv iching · 🍽 Shirinlik va gazli ichimliklarni kamaytiring · 😴 Yaxshi uxlang</div>`;
   view.innerHTML = html;
 }
@@ -174,6 +216,57 @@ function renderPlan() {
       <p class="muted">${daysOf('R')} — dam kuni. Yuklama har 2 haftada oshadi. Hozirgi daraja: ${level() + 1}/4</p></div>
     ${TYPES.map(card).join('')}
     <div class="tip">⚠️ Og‘riq, bosh aylanishi yoki ko‘krakda siqilish sezsangiz, darhol to‘xtang. Sog‘lig‘ingizda muammo bo‘lsa, avval shifokor bilan maslahatlashing.</div>`;
+}
+
+// ---------- Mashqlar kutubxonasi ----------
+const LV = ['Oson', 'O‘rta', 'Qiyin'];
+const CAT_IDS = Object.keys(CATS);
+let libQ = '', libCat = '';
+const norm = s => s.toLowerCase().replace(/[‘’ʻʼ'`´]/g, '');
+
+const libIds = () => {
+  const q = norm(libQ.trim());
+  return Object.keys(MOVES)
+    .filter(id => CATS[MOVES[id].cat] && (!libCat || MOVES[id].cat === libCat)
+      && (!q || norm(`${variant(id).name} ${MOVES[id].name} ${CATS[MOVES[id].cat]}`).includes(q)))
+    .sort((a, b) => CAT_IDS.indexOf(MOVES[a].cat) - CAT_IDS.indexOf(MOVES[b].cat) || MOVES[a].lvl - MOVES[b].lvl);
+};
+
+function libRow(id) {
+  const m = MOVES[id], on = extrasOf(today()).includes(id);
+  return `<div class="prow"><div><div class="name">${variant(id).name}</div>
+    <div class="muted">${CATS[m.cat]} · ${LV[m.lvl - 1]} · ${amountOf(id)}</div></div>
+    <div class="acts">${infoBtn(id)}<button class="add ${on ? 'on' : ''}" data-add="${id}" aria-label="${on ? 'Bugundan olib tashlash' : 'Bugunga qo‘shish'}">${on ? '✓' : '+'}</button></div></div>`;
+}
+
+function updateLib() {
+  const ids = libIds();
+  $('libCount').textContent = `(${ids.length})`;
+  $('libCats').innerHTML = [['', 'Hammasi'], ...Object.entries(CATS)]
+    .map(([k, v]) => `<button class="chip ${libCat === k ? 'on' : ''}" data-cat="${k}">${v}</button>`).join('');
+  $('libList').innerHTML = ids.length ? ids.map(libRow).join('') : '<p class="muted">Hech narsa topilmadi.</p>';
+}
+
+function presetRow(p) {
+  const plan = presetPlan(p);
+  return `<div class="prow"><div><div class="name">${p.name}</div>
+    <div class="muted">${p.note} · ~${planMinutes(plan)} daqiqa · ${p.ids.length} mashq</div></div>
+    <button class="btn sm" data-preset="${p.id}" aria-label="Boshlash: ${p.name}">▶</button></div>`;
+}
+
+function renderLib() {
+  title.textContent = 'Mashqlar';
+  view.innerHTML = `
+    <div class="card"><h2>⚡ Tayyor mashg‘ulotlar</h2>
+      <p class="muted">Bir bosishda boshlang — telefon o‘zi sanaydi va ovoz beradi. Boshlash oldidan qizinib oling.</p>
+      ${PRESETS.map(presetRow).join('')}</div>
+    <div class="card"><h2>Barcha mashqlar <span class="muted" id="libCount"></span></h2>
+      <input id="libQ" type="search" placeholder="Qidirish: squat, qorin, cho‘zilish…" autocomplete="off">
+      <div class="chips" id="libCats"></div>
+      <p class="muted">“+” mashqni bugungi ro‘yxatga qo‘shadi, ⓘ — qanday bajarilishini ko‘rsatadi.</p>
+      <div id="libList"></div></div>`;
+  $('libQ').value = libQ;
+  updateLib();
 }
 
 function renderWeight() {
@@ -237,7 +330,8 @@ function openInfo(id) {
   const m = MOVES[id]; if (!m) return;
   const v = variant(id);
   const alt = m.low ? (S.low ? { hard: `Sakrab bajariladigan variant: ${m.name}` } : { easy: `Sakramasdan variant: ${m.low.name}` }) : m;
-  $('sheet').innerHTML = `<div class="panel"><h2>${v.name}</h2>
+  const meta = CATS[m.cat] ? `<p class="muted">${CATS[m.cat]} · ${LV[m.lvl - 1]} daraja · odatda ${amountOf(id)}</p>` : '';
+  $('sheet').innerHTML = `<div class="panel"><h2>${v.name}</h2>${meta}
     <h3>Qanday bajariladi</h3><ol>${v.how.map(s => `<li>${s}</li>`).join('')}</ol>
     ${alt.easy ? `<p>🟢 <b>Yengilroq:</b> ${alt.easy}</p>` : ''}
     ${alt.hard ? `<p>🔴 <b>Qiyinroq:</b> ${alt.hard}</p>` : ''}
@@ -260,20 +354,56 @@ function startTimer(sec, label) {
 }
 $('timerStop').onclick = () => { clearInterval(tInt); $('timer').hidden = true; };
 
-// ---------- Avtomatik interval taymer (kardio kunlari) ----------
+// ---------- Avtomatik interval taymer ----------
+// plan: { ids, work, rest, rounds, warm?, mark, extras?, restName?, restTip?, restPhase? }
 const PHASE = { ready: 'TAYYORLANING', warm: 'QIZISH', work: 'ISHLANG!', rest: 'DAM OLING', cool: 'CHO‘ZILISH' };
 let run = null, audio = null, wake = null;
 
-function circuitSteps(type) {
-  const { work, rest, rounds } = cardio();
-  const ids = CIRCUITS[type].moves;
+const planMinutes = plan => Math.round(circuitSteps(plan).reduce((a, s) => a + s.secs, 0) / 60);
+// Rejadagi kardio kuni: qizish + aylana + cho‘zilish; bajarilganda kun ro‘yxati to‘liq belgilanadi.
+const circuitPlan = type => ({ ids: CIRCUITS[type].moves, ...cardio(), warm: true, mark: exercises(type).map(e => e.id) });
+// Tayyor mashg‘ulot: daraja oshgan sari ish ko‘payadi, dam qisqaradi; bajarilganda bugungi qo‘shimchalarga tushadi.
+function presetPlan(p) {
+  const l = level();
+  return {
+    ids: p.ids, rounds: p.rounds,
+    work: p.fixed ? p.work : Math.min(45, p.work + 5 * l),
+    rest: p.fixed ? p.rest : Math.max(10, p.rest - 5 * l),
+    restName: p.restName, restTip: p.restTip, restPhase: p.restPhase,
+    mark: p.ids.map(id => 'x:' + id), extras: p.ids,
+  };
+}
+// Bugun qo‘shilgan mashqlar (daqiqa bilan o‘lchanadigan yurishlardan tashqari).
+function extrasPlan(date) {
+  const ids = extrasOf(date).filter(id => MOVES[id].kind !== 'min');
+  // Faqat cho‘zilish bo‘lsa: 30 s ushlab, 5 s da keyingi holatga o‘tiladi.
+  const hold = ids.length && ids.every(id => MOVES[id].cat === 'stretch')
+    ? { work: 30, rest: 5, rounds: 1, restName: 'Keyingi holatga o‘ting', restTip: 'Tanani bo‘shating, chuqur nafas oling', restPhase: 'KEYINGISI' }
+    : cardio();
+  return { ids, ...hold, mark: ids.map(id => 'x:' + id) };
+}
+
+function circuitSteps(plan) {
+  const { ids, work, rest, rounds } = plan;
   const steps = [{ kind: 'ready', name: 'Tayyorlaning', secs: 5, tip: 'Joyingizni tayyorlang, suv yoningizda tursin' }];
-  WARM_STEPS.forEach((s, i) => steps.push({ kind: 'warm', ...s, meta: `Qizish ${i + 1}/${WARM_STEPS.length}` }));
+  if (plan.warm) WARM_STEPS.forEach((s, i) => steps.push({ kind: 'warm', ...s, meta: `Qizish ${i + 1}/${WARM_STEPS.length}` }));
   for (let r = 1; r <= rounds; r++) ids.forEach((id, k) => {
-    steps.push({ kind: 'work', name: variant(id).name, tip: variant(id).cue, secs: work, meta: `Raund ${r}/${rounds} · mashq ${k + 1}/${ids.length}` });
-    if (!(r === rounds && k === ids.length - 1)) steps.push({ kind: 'rest', name: 'Nafasni rostlang', tip: 'Chuqur nafas oling, yelkalarni bo‘shating', secs: rest, meta: `Raund ${r}/${rounds}` });
+    const v = variant(id), m = MOVES[id];
+    const meta = rounds > 1 ? `Raund ${r}/${rounds} · mashq ${k + 1}/${ids.length}` : `Mashq ${k + 1}/${ids.length}`;
+    // Har tomonga bajariladigan mashq chap va o‘ng tomon uchun alohida bosqich bo‘ladi.
+    const sides = m.kind === 'side' || m.kind === 'timeside' ? [' — chap tomon', ' — o‘ng tomon'] : [''];
+    sides.forEach((sfx, i) => {
+      steps.push({ kind: m.cat === 'stretch' ? 'cool' : 'work', name: v.name + sfx, tip: v.cue || v.how[0], secs: work, meta });
+      if (i < sides.length - 1) steps.push({ kind: 'rest', phase: 'ALMASHTIRING', name: 'Tomonni almashtiring', tip: '', secs: 4, meta });
+    });
+    if (rest > 0 && !(r === rounds && k === ids.length - 1)) {
+      steps.push({
+        kind: 'rest', phase: plan.restPhase, name: plan.restName || 'Nafasni rostlang',
+        tip: plan.restTip || 'Chuqur nafas oling, yelkalarni bo‘shating', secs: rest, meta: rounds > 1 ? `Raund ${r}/${rounds}` : '',
+      });
+    }
   });
-  COOL_STEPS.forEach((s, i) => steps.push({ kind: 'cool', ...s, meta: `Cho‘zilish ${i + 1}/${COOL_STEPS.length}` }));
+  if (plan.warm) COOL_STEPS.forEach((s, i) => steps.push({ kind: 'cool', ...s, meta: `Cho‘zilish ${i + 1}/${COOL_STEPS.length}` }));
   return steps;
 }
 
@@ -298,7 +428,7 @@ function showStep() {
   const s = run.steps[run.i];
   const nx = run.steps.slice(run.i + 1).find(x => x.kind !== 'rest');
   $('circuit').className = s.kind;
-  $('cPhase').textContent = PHASE[s.kind];
+  $('cPhase').textContent = s.phase || PHASE[s.kind];
   $('cName').textContent = s.name;
   $('cTip').textContent = s.tip || '';
   $('cMeta').textContent = s.meta || '';
@@ -336,12 +466,13 @@ function pauseRun(on) {
   $('cPause').textContent = on ? 'Davom etish' : 'Pauza';
 }
 
-function startRun(type) {
-  const steps = circuitSteps(type);
+function startRun(plan) {
+  if (!plan.ids.length) return;
+  const steps = circuitSteps(plan);
   const before = []; let total = 0;
   steps.forEach(s => { before.push(total); total += s.secs; });
   try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); audio.resume?.(); } catch { audio = null; }
-  run = { type, steps, before, total, i: -1, paused: false, beeped: 0, timer: setInterval(tick, 200) };
+  run = { plan, steps, before, total, i: -1, paused: false, beeped: 0, timer: setInterval(tick, 200) };
   $('circuit').hidden = false;
   holdScreen();
   advance();
@@ -355,9 +486,9 @@ function endRun() {
 
 function finishRun() {
   clearInterval(run.timer);
-  const date = today();
-  const ids = exercises(run.type).map(e => e.id);
-  S.done[date] = [...new Set([...(S.done[date] || []), ...ids])];
+  const { mark, extras } = run.plan, date = today();
+  S.done[date] = [...new Set([...(S.done[date] || []), ...mark])];
+  if (extras) S.extra[date] = [...new Set([...extrasOf(date), ...extras])];
   save(); freeScreen();
   run = null;
   $('circuit').className = 'done';
@@ -393,10 +524,25 @@ view.onclick = e => {
     const i = arr.indexOf(t.dataset.ex);
     i >= 0 ? arr.splice(i, 1) : arr.push(t.dataset.ex);
     save(); render();
+  } else if (t.dataset.xex) {
+    const date = today(), key = 'x:' + t.dataset.xex, arr = S.done[date] || (S.done[date] = []);
+    const i = arr.indexOf(key);
+    i >= 0 ? arr.splice(i, 1) : arr.push(key);
+    save(); render();
+  } else if (t.dataset.unx) {
+    toggleExtra(t.dataset.unx); render();
+  } else if (t.dataset.add) {
+    toggleExtra(t.dataset.add); updateLib();
+  } else if ('cat' in t.dataset) {
+    libCat = t.dataset.cat; updateLib();
   } else if (t.dataset.info) {
     openInfo(t.dataset.info);
   } else if (t.dataset.run) {
-    startRun(t.dataset.run);
+    startRun(circuitPlan(t.dataset.run));
+  } else if (t.dataset.preset) {
+    startRun(presetPlan(PRESETS.find(p => p.id === t.dataset.preset)));
+  } else if ('runExtra' in t.dataset) {
+    startRun(extrasPlan(today()));
   } else if ('pick' in t.dataset) {
     if (t.dataset.pick) S.pick[today()] = t.dataset.pick; else delete S.pick[today()];
     save(); render();
@@ -424,6 +570,8 @@ view.onclick = e => {
     $('file').click();
   }
 };
+
+view.oninput = e => { if (e.target.id === 'libQ') { libQ = e.target.value; updateLib(); } };
 
 view.onchange = e => {
   const t = e.target;

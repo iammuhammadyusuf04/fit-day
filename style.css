@@ -110,3 +110,12 @@ button.btn.run { margin: 12px 0 6px; }
 #circuit .fin { display: none; }
 #circuit.done .run { display: none; }
 #circuit.done .fin { display: flex; }
+
+/* --- Mashqlar kutubxonasi --- */
+.prow .name { font-weight: 600; }
+.acts { display: flex; align-items: center; gap: 4px; flex: none; }
+button.add { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--green); background: none; color: var(--green); font-size: 22px; line-height: 1; padding: 0; flex: none; }
+button.add.on { background: var(--green); color: #fff; }
+button.info.del { color: var(--muted); font-size: 18px; }
+.prow .btn.sm { flex: none; min-width: 44px; }
+input[type=search] { -webkit-appearance: none; appearance: none; margin: 8px 0 10px; }

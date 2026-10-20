@@ -1,4 +1,4 @@
-const CACHE = 'fitday-v2';
+const CACHE = 'fitday-v3';
 const FILES = ['./', 'index.html', 'style.css', 'moves.js', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {
