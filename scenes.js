@@ -210,8 +210,10 @@ class Player {
     this.playing = true; this.last = performance.now();
     const step = now => {
       if (!this.playing) return;
+      this.raf = requestAnimationFrame(step);
+      if (now - this.last < 28) return; // ~30 kadr/soniya: silliq ko‘rinadi, telefon quvvati kam ketadi
       this.u = (this.u + (now - this.last) * this.speed / this.sc.dur) % 1; this.last = now;
-      this.draw(); this.raf = requestAnimationFrame(step);
+      this.draw();
     };
     this.raf = requestAnimationFrame(step);
   }

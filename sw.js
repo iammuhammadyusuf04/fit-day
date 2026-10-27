@@ -1,4 +1,4 @@
-const CACHE = 'fitday-v4';
+const CACHE = 'fitday-v5';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'gym.js', 'manifest.webmanifest',
   'scenes.js', 'scenes-cardio.js', 'scenes-lower.js', 'scenes-upper.js', 'scenes-core.js', 'scenes-stretch.js',

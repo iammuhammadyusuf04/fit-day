@@ -2,7 +2,7 @@
 
 // ---------- Ma'lumotlar (faqat telefonda, localStorage) ----------
 const KEY = 'fitday.v1';
-const fresh = () => ({ startDate: null, height: '', goal: '', weights: [], done: {}, pick: {}, extra: {}, kg: {}, sound: true, helpSeen: false });
+const fresh = () => ({ startDate: null, height: '', goal: '', weights: [], done: {}, pick: {}, extra: {}, kg: {}, sound: true, awake: true, helpSeen: false });
 const save = () => localStorage.setItem(KEY, JSON.stringify(S));
 let S;
 try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch { S = fresh(); }
@@ -220,7 +220,7 @@ const libIds = () => {
   const q = norm(libQ.trim());
   return Object.keys(EX)
     .filter(id => (!libCat || EX[id].cat === libCat)
-      && (!q || norm(`${EX[id].name} ${EQUIP[EX[id].eq].name} ${EQUIP[EX[id].eq].en} ${CATS[EX[id].cat]}`).includes(q)))
+      && (!q || norm(`${EX[id].name} ${EQUIP[EX[id].eq].name} ${EQUIP[EX[id].eq].en} ${EQUIP[EX[id].eq].ru} ${CATS[EX[id].cat]}`).includes(q)))
     .sort((a, b) => CAT_IDS.indexOf(EX[a].cat) - CAT_IDS.indexOf(EX[b].cat) || EX[a].lvl - EX[b].lvl);
 };
 
@@ -255,7 +255,7 @@ function renderLib() {
       <p class="muted">Taymer qaysi trenajorda nima qilishni bosqichma-bosqich aytadi (tezlik, qiyalik, qarshilik) va animatsiya ko‘rsatadi.</p>
       ${Object.keys(SESSIONS).map(sessionRow).join('')}</div>
     <div class="card"><h2>Barcha mashqlar <span class="muted" id="libCount"></span></h2>
-      <input id="libQ" type="search" placeholder="Qidirish: leg press, orqa, treadmill…" autocomplete="off">
+      <input id="libQ" type="search" placeholder="Qidirish: leg press, orqa, begovaya…" autocomplete="off">
       <div class="chips" id="libCats"></div>
       <p class="muted">Rasmni bossangiz — animatsiya va tushuntirish ochiladi. “+” mashqni bugungi ro‘yxatga qo‘shadi.</p>
       <div id="libList"></div></div>`;
@@ -280,7 +280,9 @@ function renderWeight() {
       <div class="row"><input id="kg" type="number" inputmode="decimal" step="0.1" placeholder="masalan 82.5">
       <button class="btn sm" id="addW">Saqlash</button></div></div>
     <div class="card"><h2>Tarix</h2>${[...w].reverse().map(x =>
-      `<div class="log"><span>${x.date}</span><span><b>${x.kg} kg</b> <button data-del="${x.date}">🗑</button></span></div>`).join('') || '<span class="muted">Bo‘sh</span>'}</div>`;
+      `<div class="log"><span>${x.date}</span><span><b>${x.kg} kg</b> <button data-del="${x.date}">🗑</button></span></div>`).join('') || '<span class="muted">Bo‘sh</span>'}</div>
+    <details class="card first" id="weightRules"><summary><h2>🥗 Vazn tashlash qoidalari</h2></summary>
+      ${WEIGHT_RULES.map(([i, t, d]) => `<div class="ft"><b>${i} ${t}</b><div class="muted">${d}</div></div>`).join('')}</details>`;
 }
 
 function chart(w, goal) {
@@ -309,7 +311,10 @@ function renderMe() {
       <label>Boshlagan sana</label><input id="start" type="date" value="${S.startDate}">
       <p></p><button class="btn" id="saveP">Saqlash</button>${bmi}</div>
     <div class="card"><h2>Sozlamalar</h2>
-      <label class="check"><input type="checkbox" id="sound" ${S.sound ? 'checked' : ''}><span>Taymer ovozi</span></label></div>
+      <label class="check"><input type="checkbox" id="sound" ${S.sound ? 'checked' : ''}><span>Taymer ovozi</span></label>
+      <p class="muted hint">Ovoz chiqmasa, telefon “jim” rejimida emasligini tekshiring. iPhone’da tebranish ishlamaydi — taymerning rangi va raqamlariga qarang.</p>
+      <label class="check"><input type="checkbox" id="awake" ${S.awake ? 'checked' : ''}><span>Ekran o‘chmasin (ilova ochiq turganda)</span></label>
+      <p class="muted hint">Mashq paytida telefon qorong‘ilashmasligi uchun. Kardio taymeri ishlaganda bu har doim yoqiladi. iPhone’da iOS 18.4 yoki yangisi kerak.</p></div>
     <div class="card"><h2>Zaxira nusxa</h2>
       <p class="muted">Ma’lumotlar faqat shu telefonda saqlanadi. Telefonni almashtirsangiz yoki brauzer ma’lumotlarini tozalasangiz, yo‘qoladi — vaqti-vaqti bilan zaxira oling.</p>
       <div class="row"><button class="btn sec sm grow" id="exp">Eksport</button>
@@ -327,6 +332,9 @@ function openInfo(id) {
   const kgBox = x.kind === 'sets'
     ? `<div class="kgrow"><label for="kgIn">Bugungi og‘irlik (kg)</label><div class="row"><input id="kgIn" type="number" inputmode="decimal" step="0.5" placeholder="masalan 20" value="${S.kg[id] || ''}"><button class="btn sm" data-savekg="${id}">Saqlash</button></div></div>`
     : '';
+  const altBox = (x.alt || []).length
+    ? `<h3>Trenajor band bo‘lsa — o‘xshash mashqlar</h3><div class="chips alt">${x.alt.map(a => `<button class="chip" data-info="${a}">${EX[a].name}</button>`).join('')}</div>`
+    : '';
   $('sheet').innerHTML = `<div class="panel">
     <div id="anim" class="anim"></div>
     <div class="actl"><button class="chip" id="aPlay">To‘xtatish</button><button class="chip" id="aSlow">Sekin</button></div>
@@ -334,6 +342,7 @@ function openInfo(id) {
     <h2>${x.name}</h2>
     <p class="muted">${CATS[x.cat]} · ${LV[x.lvl - 1]} daraja · odatda ${amountOf(id)}</p>
     <div class="eq"><div class="eqh">🏋️ ${q.name} <span class="muted">· ${q.en}</span></div>
+      <div class="muted">🗣 Ruscha: ${q.ru}</div>
       <div class="muted">📍 ${q.zone}</div><p>${q.look}</p></div>
     <p>🎯 <b>Ishlaydigan mushaklar:</b> ${x.muscles}</p>
     <h3>Trenajorni sozlash</h3>${ol(x.setup)}
@@ -341,6 +350,7 @@ function openInfo(id) {
     <h3>Boshlovchi uchun</h3><p>${x.start}</p>
     <h3>Ko‘p uchraydigan xatolar</h3><ul>${x.mistakes.map(s => `<li>${s}</li>`).join('')}</ul>
     ${kgBox}
+    ${altBox}
     <button class="btn" data-close>Yopish</button></div>`;
   $('sheet').hidden = false;
   if (player) player.pause();
@@ -354,6 +364,8 @@ function closeInfo() {
 $('sheet').onclick = e => {
   const t = e.target;
   if (t.id === 'sheet' || t.closest('[data-close]')) return closeInfo();
+  const alt = t.closest('[data-info]');
+  if (alt) return openInfo(alt.dataset.info);
   if (t.closest('#anim') || t.id === 'aPlay') {
     if (!player) return;
     const on = player.toggle(); $('aPlay').textContent = on ? 'To‘xtatish' : 'Davom etish';
@@ -384,7 +396,7 @@ $('timerStop').onclick = () => { clearInterval(tInt); $('timer').hidden = true; 
 // ---------- Kardio seansi taymeri ----------
 // plan: { steps, mark }. Har bosqichda (scene) trenajor animatsiyasi ko‘rsatiladi.
 const PHASE = { ready: 'TAYYORLANING', warm: 'QIZISH', work: 'ISHLANG!', rest: 'DAM OLING', cool: 'SOVUTISH' };
-let run = null, audio = null, wake = null;
+let run = null, audio = null;
 
 const sessionPlan = key => ({ steps: SESSIONS[key].steps(level()), mark: ['ses_' + key] });
 
@@ -392,6 +404,7 @@ const fmt = s => s >= 60 ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '
 
 function beep(freq, ms) {
   if (!S.sound || !audio) return;
+  if (audio.state !== 'running') audio.resume?.().catch(() => {});
   const o = audio.createOscillator(), g = audio.createGain(), t = audio.currentTime;
   o.frequency.value = freq;
   g.gain.setValueAtTime(0.25, t);
@@ -400,10 +413,37 @@ function beep(freq, ms) {
   o.start(t); o.stop(t + ms / 1000);
 }
 
-// Ekran o‘chib qolmasligi uchun (mashq paytida telefon qo‘lda emas).
-async function holdScreen() { try { wake = await navigator.wakeLock?.request('screen'); } catch { wake = null; } }
-function freeScreen() { wake?.release().catch(() => {}); wake = null; }
-document.addEventListener('visibilitychange', () => { if (run && !document.hidden) holdScreen(); });
+// Ekran o‘chib qolmasligi uchun (mashq paytida telefon qo‘lda emas): kardio seansida doim,
+// boshqa vaqtda — “Ekran o‘chmasin” yoqiq bo‘lsa (45 daqiqa tegilmasa, o‘zi bo‘shatadi).
+let wake = null, waking = false, wakeIdle = 0;
+async function holdScreen() {
+  if (wake || waking || document.hidden) return;
+  waking = true;
+  try {
+    const w = await navigator.wakeLock?.request('screen');
+    if (w && (run || S.awake)) {
+      wake = w;
+      w.addEventListener('release', () => { if (wake === w) wake = null; });
+    } else if (w) w.release().catch(() => {});
+  } catch { wake = null; }
+  waking = false;
+}
+function freeScreen() {
+  if (run || S.awake) return;
+  clearTimeout(wakeIdle);
+  if (wake) wake.release().catch(() => {});
+  wake = null;
+}
+function touchScreen() {
+  if (!S.awake || run) return;
+  clearTimeout(wakeIdle);
+  wakeIdle = setTimeout(() => {
+    if (!run && wake) { wake.release().catch(() => {}); wake = null; }
+  }, 45 * 60e3);
+  holdScreen();
+}
+addEventListener('pointerdown', touchScreen, true);
+document.addEventListener('visibilitychange', () => { if (!document.hidden && (run || S.awake)) holdScreen(); });
 
 function showStep() {
   const s = run.steps[run.i];
@@ -477,8 +517,7 @@ function finishRun() {
   clearInterval(run.timer); stopScene();
   const date = today();
   S.done[date] = [...new Set([...(S.done[date] || []), ...run.plan.mark])];
-  save(); freeScreen();
-  run = null;
+  save(); run = null; freeScreen();
   $('circuit').className = 'done';
   $('cScene').hidden = true;
   $('cPhase').textContent = 'BARAKALLA!';
@@ -564,6 +603,7 @@ view.oninput = e => { if (e.target.id === 'libQ') { libQ = e.target.value; updat
 view.onchange = e => {
   const t = e.target;
   if (t.id === 'sound') { S.sound = t.checked; save(); return; }
+  if (t.id === 'awake') { S.awake = t.checked; save(); if (S.awake) touchScreen(); else freeScreen(); return; }
   if (t.id !== 'file' || !t.files[0]) return;
   const r = new FileReader();
   r.onload = () => {
@@ -574,4 +614,5 @@ view.onchange = e => {
 };
 
 render();
+touchScreen();
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});

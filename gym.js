@@ -146,7 +146,7 @@ const EX = {
     tip: 'Tutqichdan ushlamang — qiyalik o‘zi yetarli yuk beradi.',
     setup: [
       'Avval 3–5 daqiqa tekis (0%) yurib qizining.',
-      'INCLINE (qiyalik) ▲ tugmasi bilan qiyalikni 3–5% ga qo‘ying (ekranda %).',
+      'INCLINE (qiyalik) ▲ tugmasi bilan qiyalikni 1–2% dan boshlab qo‘ying (ekranda %); mashq davomida asta oshirasiz.',
       'Tezlikni 4,5–5 km/soat ga sozlang: qiyalik oshganda yurish qiyinlashadi, shuning uchun tezlik past bo‘lsin.',
     ],
     how: [
@@ -156,7 +156,7 @@ const EX = {
       'Qiyalikni har 5 daqiqada 1% oshirishingiz mumkin, lekin nafas qiyinlashsa kamaytiring.',
       'Tugagach qiyalikni 0% ga qaytarib, 2–3 daqiqa sekin yuring.',
     ],
-    start: 'Boshlash: qiyalik 3–5%, tezlik 4,5 km/soat, 15 daqiqa. Har 2 haftada qiyalik yoki vaqtni biroz oshiring.',
+    start: 'Boshlash: qiyalik 2–3%, tezlik 4,5 km/soat, 10–15 daqiqa. Qiyalikni har safar faqat 1% ga oshiring: 8–10% — baland qiyalik, shoshilmang. Har 2 haftada qiyalik yoki vaqtni biroz oshiring.',
     mistakes: [
       'Qiyalik baland, tezlik yuqori bo‘lganda tutqichga yopishib olish — foydasi kamayadi, belga zarar.',
       'Belni egib, orqaga engashib yurish.',
@@ -196,9 +196,9 @@ const EX = {
     ],
     how: [
       'Tik turing, ikki qo‘lingiz harakatlanuvchi tutqichlarda.',
-      'Oyoqlar bilan "ellips" chizib pedallarni aylantiring; qo‘llar tutqichlarni navbat bilan itarib-tortadi.',
+      'Oyoqlar bilan “ellips” chizib pedallarni aylantiring; qo‘llar tutqichlarni navbat bilan itarib-tortadi.',
       'Tana tik, qorin tortilgan, tizzalar sal bukik.',
-      'Ritm tekis bo‘lsin: daqiqasiga 120–140 qadam. Orqaga ham aylantirib ko‘rishingiz mumkin (boshqa mushaklar ishlaydi).',
+      'Ritm tekis bo‘lsin. Boshlovchi bo‘lsangiz, avval faqat oldinga aylantiring; orqaga aylantirish keyinroq (boshqa mushaklar ishlaydi).',
     ],
     start: 'Boshlash: qarshilik 3–4, 10 daqiqa. Qarshilikni asta 6–7 gacha oshiring.',
     mistakes: [
@@ -235,7 +235,7 @@ const EX = {
     tip: 'Kuch oyoqdan: avval oyoqlar, keyin tana, oxirida qo‘llar.',
     setup: [
       'Oyoqlarni tayanchga qo‘yib, tasmalarni to‘piqqa yaqin qismdan mahkamlang.',
-      'Damper (g‘ildirak yonidagi dastak) ni 3–5 ga qo‘ying — 10 emas, bu ancha qiyin.',
+      'Damper (g‘ildirak yonidagi dastak) ni 3–5 ga qo‘ying — ko‘pchilik uchun eng mos; 10 ga qo‘ymang, tez charchatadi.',
       'Tutqichni ushlang va o‘rindiqda to‘g‘ri o‘tiring.',
     ],
     how: [
@@ -243,9 +243,9 @@ const EX = {
       '2) Oyoqlar bilan itaring (o‘rindiq orqaga suriladi) — qo‘llar hali to‘g‘ri.',
       '3) Keyin tanani sal orqaga og‘dirib, tutqichni ko‘krak ostiga (pastki qovurg‘a) torting.',
       '4) Qaytishda teskari tartibda: avval qo‘llar, keyin tana, oxirida tizzalar buklanadi.',
-      'Ritm: itarish — 1 soniya, qaytish — 2 soniya, daqiqasiga 20–24 zarba.',
+      'Ritm: itarish — 1 soniya, qaytish — 2 soniya, daqiqasiga 18–24 zarba.',
     ],
-    start: 'Boshlash: 2–3 daqiqa yengil eshkak, keyin dam. Jami 5–10 daqiqa. Texnikani birinchi marta trener bilan ko‘rib chiqing.',
+    start: 'Boshlash: avval faqat oyoqlar bilan itarishni mashq qiling (qo‘llar to‘g‘ri), keyin tanani, so‘ng qo‘llarni qo‘shing. 2–3 daqiqa yengil eshkak, keyin dam; jami 5–10 daqiqa. Texnikani birinchi marta trener bilan ko‘rib chiqing.',
     mistakes: [
       'Birinchi bo‘lib qo‘llar bilan tortish — kuch faqat qo‘ldan chiqadi.',
       'Belni dumaloqlab, orqaga haddan ortiq yotib ketish.',
@@ -262,7 +262,7 @@ const EX = {
     ],
     how: [
       'Tik turing, butun oyoq tagi pedal/zinaga tegsin.',
-      'Navbat bilan "zinapoyadan chiqing"; tutqichni faqat muvozanat uchun ushlang.',
+      'Navbat bilan “zinapoyadan chiqing”; tutqichni faqat muvozanat uchun ushlang.',
       'Qadamlar bir tekis, nafas ritmik bo‘lsin.',
     ],
     start: 'Boshlash: 5–8 daqiqa, past daraja. Bu trenajor juda zo‘riqtiradi — oson boshlang.',
@@ -279,17 +279,17 @@ const EX = {
     muscles: 'Son oldi, son orqasi va dumba mushaklari.',
     tip: 'Tizzalarni oxirigacha qulflamang, dumbani o‘rindiqdan ko‘tarmang.',
     setup: [
-      'Pin (yoki plastina) bilan eng yengil og‘irlikni tanlang. Boshlovchi uchun taxminan 20–30 kg.',
+      'Pin bilan eng yengil og‘irlikni tanlang. (Plastinali mashinada platformaning o‘zi ham og‘ir — dastlab plastinasiz boshlang.)',
       'O‘rindiq tayanchini surib, tizzalaringiz bukilganda taxminan 90° bo‘ladigan joyni toping.',
-      'Oyoqlarni platformaning o‘rtasiga, yelka kengligida qo‘ying; dumba va bel o‘rindiqqa yopishsin.',
-      'Yon tutqichlarni ushlab, xavfsizlik ilgaklarini (safety) bo‘shating — platforma erkin yuradi.',
+      'Oyoqlarni platformaning o‘rtasiga, yelka kengligida yoki sal kengroq, oyoq uchlari sal tashqariga qaratib qo‘ying; dumba va bel o‘rindiqqa yopishsin.',
+      'Yon tutqichlardan ushlang. Avval platformani oyoqlar bilan itarib ko‘taring, keyin xavfsizlik ilgaklarini (safety) bo‘shating.',
     ],
     how: [
       'Nafas oling va tizzalarni sekin bukib, platformani o‘zingizga yaqinlashtiring (2–3 soniya).',
       'Tizzalar ko‘kragingizga juda yaqinlashmasin; dumba o‘rindiqdan ko‘tarilmasin.',
       'Nafas chiqarib, tovonlar bilan itarib oyoqlarni to‘g‘rilang — tizzalarni oxirigacha qulflab yubormang.',
       'Yuqorida bir lahza to‘xtang va sekin qaytaring.',
-      'Tugagach platformani ilgaklarga qo‘ying (xavfsizlik).',
+      'Tugagach platformani to‘liq ko‘tarib, xavfsizlik ilgaklarini qaytarib ulang — shundan keyingina oyoqlarni olib qo‘ying.',
     ],
     start: 'Boshlash: yengil og‘irlik, 2–3 yondashuv × 12 takror, yondashuvlar orasida 60–90 soniya dam.',
     mistakes: [
@@ -311,7 +311,7 @@ const EX = {
     how: [
       'Nafas chiqarib, oyoqlarni tizzadan sekin to‘g‘rilang.',
       'Yuqorida 1 soniya ushlab, son oldi qisilishini his qiling.',
-      'Nafas olib, 2–3 soniyada sekin tushiring — og‘irlikni "tashlab" yubormang.',
+      'Nafas olib, 2–3 soniyada sekin tushiring — og‘irlikni “tashlab” yubormang.',
     ],
     start: 'Boshlash: yengil og‘irlik, 2–3 × 12. Tizza bilan muammo bo‘lsa, trenerga ayting.',
     mistakes: [
@@ -338,7 +338,7 @@ const EX = {
     mistakes: [
       'Dumbani ko‘tarib, belni egish.',
       'Oyoqlarni tez silkib tortish.',
-      'Qaytishda og‘irlikni "tashlab" yuborish.',
+      'Qaytishda og‘irlikni “tashlab” yuborish.',
     ],
   },
   hipabd: {
@@ -353,7 +353,7 @@ const EX = {
     how: [
       'Nafas chiqarib, oyoqlarni yon tomonga sekin oching.',
       'Eng keng nuqtada 1 soniya to‘xtang.',
-      'Nafas olib, sekin birlashtiring — yostiqlarni "urib" yubormang.',
+      'Nafas olib, sekin birlashtiring — yostiqlarni “urib” yubormang.',
     ],
     start: 'Boshlash: yengil og‘irlik, 2–3 × 15.',
     mistakes: [
@@ -406,10 +406,10 @@ const EX = {
     muscles: 'Son oldi, dumba va son orqasi mushaklari.',
     tip: 'Birinchi marta trener yoki sherik yordamida bajaring.',
     setup: [
-      'Shtanga balandligini yelka balandligiga qo‘ying.',
+      'Shtanga balandligini yelka balandligiga qo‘ying. Xavfsizlik ilgaklarini eng pastki holatingizdan sal pastroqqa (taxminan tizza balandligiga) qo‘ying — tushib qolsangiz, shtanga ilgakka tayanadi.',
       'Birinchi marta faqat bo‘sh shtanga bilan bajaring (shtanganing o‘zi ham og‘ir).',
       'Shtanganing tagiga kiring, uni bo‘yin emas, yelkaning yuqori orqa qismiga (trapetsiya) qo‘ying.',
-      'Oyoqlarni shtangadan sal OLDINGA, yelka kengligida qo‘ying.',
+      'Oyoqlarni shtangadan sal OLDINGA (taxminan 15–30 sm), yelka kengligida, oyoq uchlari sal tashqariga qaratib qo‘ying.',
       'Shtangani burib (bilaklar bilan) ilgakdan bo‘shating.',
     ],
     how: [
@@ -544,6 +544,7 @@ const EX = {
       'Yengil og‘irlik tanlang.',
     ],
     how: [
+      'Tirsaklar sal bukilgan holatda qotib tursin — butun harakat davomida burchakni o‘zgartirmang.',
       'Nafas chiqarib, yostiqlarni ko‘kragingiz oldida bir-biriga yaqinlashtiring.',
       'Birlashgan joyda 1 soniya ko‘krakni qisib ushlang.',
       'Nafas olib, sekin qaytaring — qo‘llarni yelka chizig‘idan ortiq orqaga ketkazmang.',
@@ -589,7 +590,7 @@ const EX = {
       'Tutqichni yelkadan sal keng, kaft pastga qaratib ushlang, keyin o‘tiring.',
     ],
     how: [
-      'Tanani sal orqaga og‘dirib, ko‘krakni oldinga chiqaring.',
+      'Tanani biroz orqaga og‘dirib, ko‘krakni oldinga chiqaring, nigoh tutqichda.',
       'Nafas chiqarib, tirsaklarni pastga va orqaga yo‘naltirib, tutqichni ko‘krakning yuqori qismiga torting.',
       'Pastda kurak suyaklaringizni qisib, 1 soniya ushlang.',
       'Nafas olib, tutqichni sekin tepaga qaytaring (qo‘llar to‘liq cho‘zilguncha).',
@@ -649,7 +650,7 @@ const EX = {
     muscles: 'Orqa keng mushaklari, yelka orqasi va biceps.',
     tip: 'Pin og‘irroq = yordam ko‘proq = osonroq.',
     setup: [
-      'Pin bilan YORDAM og‘irligini tanlang: katta og‘irlik — ko‘p yordam. Boshlovchi uchun vazningizning taxminan yarmini qo‘ying.',
+      'Pin bilan YORDAM og‘irligini tanlang: katta og‘irlik — ko‘p yordam (osonroq). Boshlovchi uchun odatda vazningizning yarmidan ko‘prog‘i yordam qilib qo‘yiladi.',
       'Tizzalaringizni platformaga qo‘ying (yoki oyoqlarni tayanchga qo‘ying).',
       'Tutqichlarni yelkadan sal keng, kaft oldinga qaratib ushlang.',
     ],
@@ -658,7 +659,7 @@ const EX = {
       'Iyak tutqich balandligiga yetguncha tortib, 1 soniya ushlang.',
       'Sekin pastga tushing — qo‘llar to‘liq cho‘zilguncha (yelkani qulatmang).',
     ],
-    start: 'Boshlash: ko‘p yordam bilan 2 × 6–8. Kuchaygan sari yordam og‘irligini 5 kg dan kamaytiring.',
+    start: 'Boshlash: 6–8 ta toza takror bajara oladigan yordamni tanlang (oxirgi takror qiyin bo‘lsin). 12 tadan ortiq oson bo‘lsa — yordamni kamaytiring; 3 ta toza takror ham bo‘lmasa — oshiring. Yelkangizda shikast bo‘lgan bo‘lsa, trener bilan maslahatlashing.',
     mistakes: [
       'Sakrab yoki silkib ko‘tarilish.',
       'Pastda yelkani qulatib, qo‘llarni sal bukib qo‘yish.',
@@ -698,12 +699,12 @@ const EX = {
     ],
     how: [
       'Tirsaklarni sal bukib, qo‘llarni yon tomonga yelka balandligigacha ko‘taring.',
-      'Bilaklar tirsakdan sal pastroqda tursin (xuddi ko‘zadan suv quyayotgandek).',
+      'Harakatni tirsak boshlasin: bilaklar tirsakdan sal pastroqda yoki bir xil balandlikda tursin.',
       'Yuqorida 1 soniya ushlab, 2–3 soniyada sekin tushiring.',
     ],
     start: 'Boshlash: 2–4 kg dan, 2–3 × 12.',
     mistakes: [
-      'Tanani silkitib, gantelni "otib" ko‘tarish.',
+      'Tanani silkitib, gantelni “otib” ko‘tarish.',
       'Qo‘llarni yelka chizig‘idan baland ko‘tarish.',
       'Juda og‘ir gantel olish.',
     ],
@@ -771,7 +772,7 @@ const EX = {
     start: 'Boshlash: yengil og‘irlik, 2–3 × 15.',
     mistakes: [
       'Qo‘l va yelka kuchi bilan tortish.',
-      'Bel va sonlar bilan "urib" bajarish.',
+      'Bel va sonlar bilan “urib” bajarish.',
       'Nafasni ushlab turish.',
     ],
   },
@@ -790,7 +791,7 @@ const EX = {
     ],
     start: 'Boshlash: tizzani bukib, 2 × 8–10. Qiyinlashtirish uchun oyoqlarni to‘g‘ri ko‘taring.',
     mistakes: [
-      'Tanani tebratib, oyoqlarni "silkib" ko‘tarish.',
+      'Tanani tebratib, oyoqlarni “silkib” ko‘tarish.',
       'Belni tayanchdan ajratib, egib yuborish.',
     ],
   },
@@ -895,7 +896,7 @@ const PLAN = {
   A: [
     { ex: 'tread_walk', min: 5, tip: 'Qizish: yengil tezlikda yuring.' },
     { ex: 'legpress' }, { ex: 'chestpress' }, { ex: 'latpull' }, { ex: 'shpress' }, { ex: 'plankmat' },
-    { ex: 'tread_incline', min: [10, 12, 14, 15], tip: 'Yog‘ yoqish: qiyalik 4–6%, tutqichdan ushlamang.' },
+    { ex: 'tread_incline', min: [10, 12, 14, 15], tip: 'Yog‘ yoqish: qiyalik 2–4%, tutqichdan ushlamang.' },
     { ex: 'st_quad' }, { ex: 'st_ham' },
   ],
   B: [
@@ -932,7 +933,7 @@ const SESSIONS = {
   treadinc: {
     name: 'Yo‘lak: qiyalikda yurish', main: 'tread_incline', eqLabel: 'Yugurish yo‘lagi (Treadmill)', note: 'Yog‘ yoqish uchun eng yaxshi tanlov',
     steps: l => {
-      const inc = [[3, 4, 5, 4], [4, 5, 6, 5], [5, 6, 8, 6], [6, 8, 10, 8]][l];
+      const inc = [[2, 3, 4, 3], [3, 4, 5, 4], [4, 5, 6, 5], [5, 6, 8, 6]][l];
       const s = [
         { kind: 'ready', name: 'Yo‘lakka chiqing', tip: 'Shnurni kiyimingizga qistiring', secs: 10, scene: 'tread_walk' },
         { kind: 'warm', phase: 'QIZISH', name: 'Tekis yurish — 4,5 km/soat', tip: 'Qiyalik 0%', secs: 240, scene: 'tread_walk' },
@@ -961,14 +962,16 @@ const SESSIONS = {
 
 // Zalga birinchi marta kelgan odam uchun qisqa qo‘llanma
 const FIRST_TIME = [
-  ['👟', 'Nima olib borish kerak', 'Tagi tekis sport poyabzali, qulay kiyim, kichik sochiq va suv shishasi. Zalda sochiq bilan o‘zingizni va trenajorni artasiz.'],
+  ['👟', 'Nima olib borish kerak', 'Tagi tekis sport poyabzali, qulay kiyim, kichik sochiq, suv shishasi va shkafcha uchun qulf. Zalda sochiq bilan o‘zingizni va trenajorni artasiz.'],
+  ['🎯', 'Birinchi mashg‘ulot', '45–60 daqiqadan oshirmang. Mashinalardan boshlang — ular harakatni o‘rgatadi va xavfsizroq. Har mashqdan 1–2 yondashuv yetarli. Hamma o‘z mashg‘uloti bilan band, hech kim sizga qarab turmaydi.'],
   ['🙋', 'Trenerdan so‘rang', 'Birinchi kuni trener yoki ma’muriyatdan zalni ko‘rsatib, trenajorlarni tanishtirib berishini so‘rang — ko‘p zallarda bu bepul. So‘rashdan uyalmang, hamma birinchi marta kelgan.'],
   ['🔥', 'Avval qizining', 'Har mashg‘ulotdan oldin 5 daqiqa yo‘lakda yuring yoki velotrenajor aylantiring.'],
   ['🔧', 'Trenajorni o‘zingizga sozlang', 'O‘rindiq balandligi va tayanchlarni sozlang. Og‘irlikni pin (temir tayoqcha) bilan plastinalar ustunidan tanlang — har doim eng yengilidan boshlang.'],
-  ['🐢', 'Sekin va nazorat bilan', 'Ko‘tarish 2 soniya, tushirish 3 soniya. Texnika og‘irlikdan muhim. Og‘irlikni faqat oxirgi 2 takror qiyin bo‘lganda va shaklingiz buzilmasa oshiring.'],
+  ['🐢', 'Sekin va nazorat bilan', 'Ko‘tarish 2 soniya, tushirish 3 soniya. Texnika og‘irlikdan muhim.'],
+  ['🏋️', 'Og‘irlikni qanday tanlash', 'Shunday og‘irlik tanlangki, 12 takrorning oxirgi 2 tasi qiyin bo‘lsin, lekin texnika buzilmasin. 14–15 takrorni ham oson bajarsangiz — juda yengil; 6–8 takrordan ortiq bajara olmasangiz — juda og‘ir. Ketma-ket 2 mashg‘ulotda 12 takror oson bo‘lsa, keyingi safar eng kichik pog‘onaga (2–5 kg) oshiring.'],
   ['🌬', 'Nafas', 'Zo‘riqishda (itarish/tortishda) nafas chiqaring, qaytarishda nafas oling. Nafasni ushlab turmang.'],
-  ['⏱', 'Dam olish', 'Yondashuvlar orasida 60–90 soniya dam oling (ilovada taymer bor).'],
-  ['🤝', 'Zal odobi', 'Trenajordan keyin sochiq bilan artib qo‘ying. Gantel va plastinalarni joyiga qaytaring. Band trenajorni kutib turing yoki "navbat necha?" deb so‘rang.'],
+  ['⏱', 'Dam olish', 'Yondashuvlar orasida 60–90 soniya dam oling, qiyin mashqdan keyin 2 daqiqagacha (ilovada taymer bor).'],
+  ['🤝', 'Zal odobi', 'Trenajordan keyin sochiq bilan artib qo‘ying. Gantel va plastinalarni joyiga qaytaring. Band trenajorni kutib turing yoki “navbat necha?” deb so‘rang.'],
   ['⚠️', 'Xavfsizlik', 'O‘tkir og‘riq, bosh aylanishi yoki nafas qisilishi bo‘lsa — to‘xtang. Mushakda yengil charchoq va 1–2 kunlik og‘riq normal.'],
 ];
 
@@ -976,9 +979,46 @@ const FIRST_TIME = [
 const HOW_TO = [
   ['1️⃣', 'Har kuni faqat BITTA mashg‘ulot', 'Hamma mashg‘ulotni bir kunda bajarmaysiz. Zalga kelganingizda “Bugun” bo‘limini oching — shu kunning mashg‘uloti o‘zi chiqadi va tayyor turadi.'],
   ['2️⃣', 'Yuqoridagi tugmalar nima uchun?', '“Bugungi reja” — avtomatik tanlov, odatda aynan shuni bajarasiz, tugmalarni bosish shart emas. Boshqa tugmalar (Kuch A, Kuch B, Kardio…) faqat reja kunidan boshqa kuni kelsangiz yoki boshqa mashg‘ulot xohlasangiz kerak.'],
-  ['🗓', 'Haftada 3 marta borsangiz', 'Hafta kunlariga bog‘lanib qolmang: har safar zalga kelganda tugmalardan ketma-ket tanlang — Kuch A → Kuch B → Kuch A (keyingi hafta: Kuch B → Kuch A → Kuch B). Imkoni bo‘lsa, orada 1–2 marta kardio qo‘shing.'],
-  ['3️⃣', 'Mashqni o‘rganing', 'Trenajor rasmini bossangiz — animatsiya, trenajorni qanday sozlash va qanday bajarish chiqadi. Birinchi marta har bir trenajorni shu yerda ko‘rib oling, keyin zalda topasiz.'],
+  ['3️⃣', 'Mashqni o‘rganing', 'Trenajor rasmini bossangiz — animatsiya, trenajorning o‘zbekcha, inglizcha va ruscha nomi, uni qanday sozlash va qanday bajarish chiqadi. Birinchi marta har bir trenajorni shu yerda ko‘rib oling, keyin zalda topasiz. Trenajor band bo‘lsa, shu oynaning pastida o‘xshash mashqlar turadi.'],
   ['4️⃣', 'Bajaring va belgilang', 'Odatda 2 yondashuv (set) × 12 takror. Yondashuvlar orasida 60–90 soniya dam oling (⏱ tugmalari). Mashq tugagach, chap tomondagi doirani bosing. Hammasi belgilansa, kun bajarilgan hisoblanadi va 🔥 seriya o‘sadi.'],
-  ['5️⃣', 'Kardio kunlari', '“Taymer bilan boshlash” ni bosing — taymer tezlik, qiyalik va qarshilikni aytib boradi va animatsiya ko‘rsatadi.'],
-  ['ℹ️', 'Boshqa bo‘limlar', '“Reja” — butun haftani ko‘rish uchun (mashq shu yerda bajarilmaydi). “Mashqlar” — barcha trenajorlarni o‘rganish va “Zalga birinchi marta” qo‘llanmasi. “Vazn” — vazningizni yozib boring.'],
+  ['5️⃣', 'Kardio kunlari', '“Taymer bilan boshlash” ni bosing — taymer tezlik, qiyalik va qarshilikni aytib boradi va animatsiya ko‘rsatadi. Taymer ishlayotganda ekran o‘chmaydi.'],
+  ['🎯', 'Birinchi kun', 'Birinchi marta har mashqdan 1–2 yondashuv va eng yengil og‘irlik yetarli; butun mashg‘ulot 45–60 daqiqadan oshmasin. Imkon bo‘lsa, trenerdan zalni ko‘rsatib berishini so‘rang.'],
+  ['🗓', 'Haftada 3 marta borsangiz', 'Hafta kunlariga bog‘lanib qolmang: har safar zalga kelganda tugmalardan ketma-ket tanlang — Kuch A → Kuch B → Kuch A (keyingi hafta: Kuch B → Kuch A → Kuch B). Imkoni bo‘lsa, orada 1–2 marta kardio qo‘shing.'],
+  ['ℹ️', 'Boshqa bo‘limlar', '“Reja” — butun haftani ko‘rish uchun (mashq shu yerda bajarilmaydi). “Mashqlar” — barcha trenajorlarni o‘rganish va “Zalga birinchi marta” qo‘llanmasi. “Vazn” — vazningizni yozib boring va vazn tashlash qoidalarini o‘qing.'],
+];
+
+// Ruscha nomlar (lotin yozuvida): o‘zbek zallarida trenerlar ko‘pincha shunday atashadi
+const RU = {
+  treadmill: 'begovaya dorojka', elliptical: 'orbitrek (ellipticheskiy trenajor)', velo: 'velotrenajor', rower: 'grebnoy trenajor', stairs: 'stepper',
+  legpress: 'jim nogami', legext: 'razgibanie nog', legcurl: 'sgibanie nog', hipabd: 'razvedenie nog', hipadd: 'svedenie nog',
+  calf: 'ikry (podyom na noski)', smith: 'trenajor Smita', dumbbell: 'ganteli', bench: 'skameyka i ganteli',
+  chestpress: 'jim ot grudi (v trenajore)', pecdeck: 'babochka', latpull: 'verxnyaya tyaga', seatrow: 'nijnyaya (gorizontalnaya) tyaga',
+  backext: 'giperekstenziya', shpress: 'jim ot plech', cable: 'blok / krossover', abmach: 'press-trenajor',
+  captain: 'podyom nog v uprore (brusya)', assist: 'gravitron', mat: 'kovrik (zona rastyajki)',
+};
+Object.entries(RU).forEach(([k, v]) => { EQUIP[k].ru = v; });
+
+// Trenajor band bo‘lsa: xuddi shu mushaklarni ishlatadigan o‘xshash mashqlar
+const ALT = {
+  tread_walk: ['elliptical', 'velo', 'stairs'], tread_incline: ['stairs', 'elliptical', 'velo'], tread_run: ['elliptical', 'rower', 'velo'],
+  elliptical: ['velo', 'tread_incline'], velo: ['elliptical', 'tread_walk'], rower: ['elliptical', 'velo'], stairs: ['tread_incline', 'elliptical'],
+  legpress: ['goblet', 'smithsq'], calf: ['tread_incline', 'stairs'], legext: ['legpress', 'goblet'], legcurl: ['dbrdl', 'legpress'], hipabd: ['glutekick', 'hipadd'], hipadd: ['hipabd', 'dblunge'],
+  smithsq: ['goblet', 'legpress'], goblet: ['legpress', 'smithsq'], dbrdl: ['legcurl', 'backext'], dblunge: ['legpress', 'goblet'], glutekick: ['hipabd', 'dbrdl'],
+  chestpress: ['dbbench', 'pecdeck'], pecdeck: ['chestpress', 'dbbench'], dbbench: ['chestpress', 'pecdeck'],
+  latpull: ['assistpull', 'seatrow'], seatrow: ['latpull', 'assistpull'], assistpull: ['latpull', 'seatrow'], backext: ['dbrdl', 'plankmat'],
+  shpress: ['latraise'], latraise: ['shpress'], tripush: ['chestpress'], bicurl: ['seatrow'],
+  abmach: ['crunchmat', 'legraise', 'plankmat'], legraise: ['abmach', 'crunchmat'], plankmat: ['crunchmat', 'abmach'], crunchmat: ['abmach', 'plankmat'],
+  st_quad: ['st_ham'], st_ham: ['st_quad'], st_chest: ['st_child'], st_child: ['st_chest'],
+};
+Object.entries(ALT).forEach(([k, v]) => { EX[k].alt = v; });
+
+// Vazn tashlash uchun asosiy qoidalar (qisqa, ehtiyotkor)
+const WEIGHT_RULES = [
+  ['⚖️', 'Sur’at', 'Sog‘lom sur’at — haftasiga taxminan 0,5–1 kg. Juda tez tushirish (och qolish) mushak yo‘qotishga va qaytib semirishga olib kelishi mumkin.'],
+  ['🍽', 'Ovqatlanish hal qiluvchi', 'Vazn tashlash uchun sarflagandan kamroq kaloriya iste’mol qilish kerak. Mashq buni qo‘llab-quvvatlaydi, lekin bir bo‘lak shirinlik bir soatlik mashqni “qaytarib” yuboradi.'],
+  ['🥚', 'Oqsil', 'Har ovqatda oqsil bo‘lsin (go‘sht, baliq, tuxum, tvorog, loviya) — uzoq to‘q tutadi va mushakni saqlaydi.'],
+  ['🥤', 'Suyuq kaloriya', 'Gazli ichimlik, shirin choy va qadoqlangan sharbatni kamaytiring — eng oson tejaladigan kaloriya.'],
+  ['🚶', 'Harakat', 'Haftasiga kamida 150 daqiqa o‘rtacha kardio va 2 kun kuch mashqlari tavsiya etiladi (CDC). Kundalik yurishni ham ko‘paytiring.'],
+  ['😴', 'Uyqu va suv', '7–8 soat uxlang, kun davomida yetarlicha suv iching.'],
+  ['🩺', 'Ehtiyot', 'Surunkali kasalligingiz bo‘lsa yoki dori ichsangiz, ovqatlanishni keskin o‘zgartirishdan oldin shifokor bilan maslahatlashing.'],
 ];

@@ -17,14 +17,17 @@ Yuklama har 2 haftada oshadi (yondashuvlar, vaqt, interval). Ilovaning ichida "Q
 
 ## Animatsiyalar
 Har bir mashq uchun trenajorning o'zi va unda mashq qilayotgan odam animatsiya bilan ko'rsatiladi (37 ta mashq, 25 ta trenajor).
-Rasmni bossangiz: animatsiya (to'xtatish / sekin), trenajor nomi (ustida yozilgan inglizcha nomi ham), zalda qayerda turishi,
+Rasmni bossangiz: animatsiya (to'xtatish / sekin), trenajor nomi (inglizcha va ruscha nomi ham — zalda so'rash oson bo'lsin), zalda qayerda turishi,
 qanday ko'rinishi, sozlash, bajarish, boshlovchi uchun tavsiya va ko'p uchraydigan xatolar chiqadi. Qizil — ishlayotgan mushaklar.
+Trenajor band bo'lsa, oynaning pastida o'xshash mashqlar tugmalari turadi.
 
 ## Mashqlar bo'limi
 - **Zalga birinchi marta** — nima olib borish, trenerdan nima so'rash, zal odobi, xavfsizlik
 - **Kardio seanslari** — taymer qaysi trenajorda nima qilishni (tezlik, qiyalik, qarshilik) aytadi, har bosqichda animatsiya
-- **37 ta mashq**: kardio, oyoq va dumba, ko'krak, orqa, yelka, qo'l, qorin, cho'zilish; qidiruv (o'zbekcha va inglizcha nom bilan)
+- **37 ta mashq**: kardio, oyoq va dumba, ko'krak, orqa, yelka, qo'l, qorin, cho'zilish; qidiruv (o'zbekcha, inglizcha va ruscha nom bilan)
 - "+" mashqni bugungi ro'yxatga qo'shadi; kuch mashqlarida oxirgi ishlatilgan og'irlik (kg) eslab qolinadi
+- **Vazn** bo'limida vazn grafigi va "Vazn tashlash qoidalari" (sur'at, ovqatlanish, oqsil, harakat, uyqu)
+- **Profil**: "Ekran o'chmasin" (mashq paytida telefon qorong'ilashmaydi; kardio taymerida har doim yoqiladi), taymer ovozi, zaxira nusxa
 
 ## Tuzilishi
 - `index.html`, `style.css`, `app.js` — ilova
