@@ -1,5 +1,9 @@
-const CACHE = 'fitday-v3';
-const FILES = ['./', 'index.html', 'style.css', 'moves.js', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
+const CACHE = 'fitday-v4';
+const FILES = [
+  './', 'index.html', 'style.css', 'app.js', 'gym.js', 'manifest.webmanifest',
+  'scenes.js', 'scenes-cardio.js', 'scenes-lower.js', 'scenes-upper.js', 'scenes-core.js', 'scenes-stretch.js',
+  'icons/icon-192.png', 'icons/icon-512.png',
+];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

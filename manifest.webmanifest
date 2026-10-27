@@ -1,7 +1,7 @@
 {
   "name": "FitDay — Vazn tashlash",
   "short_name": "FitDay",
-  "description": "Boshlovchilar uchun mashqlar rejasi va vazn kundaligi",
+  "description": "Trenajor zali uchun boshlovchi rejasi: trenajorlar animatsiyasi, kardio taymeri va vazn kundaligi",
   "lang": "uz",
   "start_url": "./",
   "scope": "./",

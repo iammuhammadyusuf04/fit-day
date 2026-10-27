@@ -119,3 +119,32 @@ button.add.on { background: var(--green); color: #fff; }
 button.info.del { color: var(--muted); font-size: 18px; }
 .prow .btn.sm { flex: none; min-width: 44px; }
 input[type=search] { -webkit-appearance: none; appearance: none; margin: 8px 0 10px; }
+
+/* --- Zal: trenajor rasmlari, animatsiya, ma'lumot oynasi --- */
+.ex, .prow { align-items: center; }
+button.thumb { position: relative; flex: none; width: 92px; padding: 0; border: 0; background: none; border-radius: 10px; overflow: hidden; line-height: 0; }
+button.thumb svg, .anim svg { width: 100%; height: auto; display: block; }
+button.thumb::after { content: ''; position: absolute; right: 4px; bottom: 4px; width: 18px; height: 18px; border-radius: 50%; background: rgba(15,23,42,.72); }
+button.thumb::before { content: ''; position: absolute; right: 9px; bottom: 9px; z-index: 1; border-style: solid; border-width: 4.5px 0 4.5px 7px; border-color: transparent transparent transparent #fff; }
+.anim { border-radius: 14px; overflow: hidden; cursor: pointer; background: #eef2f7; }
+.actl { display: flex; gap: 8px; margin: 8px 0 4px; }
+.actl .chip.on { background: var(--green); border-color: var(--green); color: #fff; }
+.small { font-size: 12.5px; margin: 4px 0 10px; }
+.eq { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin: 8px 0 10px; }
+.eq p { margin: 6px 0 0; }
+.eqh { font-weight: 700; }
+.kgrow { margin: 14px 0 12px; }
+#sheet ul { padding-left: 20px; margin: 0 0 12px; }
+#sheet .panel { max-height: 92vh; }
+details.first summary { cursor: pointer; list-style: none; }
+details.first summary::-webkit-details-marker { display: none; }
+details.first summary h2 { margin: 0; }
+details.first summary::after { content: 'ochish ›'; float: right; margin-top: -26px; font-size: 13px; color: var(--green); }
+details.first[open] summary::after { content: 'yopish ˅'; }
+.ft { padding: 8px 0; border-top: 1px solid var(--line); margin-top: 8px; }
+#cScene { width: min(300px, 78vw); border-radius: 14px; overflow: hidden; background: #eef2f7; margin-bottom: 2px; }
+#cScene svg { width: 100%; height: auto; display: block; }
+@media (max-height: 720px) { #cScene { display: none !important; } #cNum { font-size: 84px; } }
+@media (max-width: 360px) { button.thumb { width: 76px; } }
+
+.eqn { font-size: 12.5px; font-weight: 600; color: var(--green); margin: 1px 0 2px; }
