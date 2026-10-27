@@ -136,10 +136,10 @@ button.thumb::before { content: ''; position: absolute; right: 9px; bottom: 9px;
 .kgrow { margin: 14px 0 12px; }
 #sheet ul { padding-left: 20px; margin: 0 0 12px; }
 #sheet .panel { max-height: 92vh; }
-details.first summary { cursor: pointer; list-style: none; }
+details.first summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 details.first summary::-webkit-details-marker { display: none; }
 details.first summary h2 { margin: 0; }
-details.first summary::after { content: 'ochish ›'; float: right; margin-top: -26px; font-size: 13px; color: var(--green); }
+details.first summary::after { content: 'ochish ›'; flex: none; font-size: 13px; color: var(--green); }
 details.first[open] summary::after { content: 'yopish ˅'; }
 .ft { padding: 8px 0; border-top: 1px solid var(--line); margin-top: 8px; }
 #cScene { width: min(300px, 78vw); border-radius: 14px; overflow: hidden; background: #eef2f7; margin-bottom: 2px; }
@@ -148,3 +148,6 @@ details.first[open] summary::after { content: 'yopish ˅'; }
 @media (max-width: 360px) { button.thumb { width: 76px; } }
 
 .eqn { font-size: 12.5px; font-weight: 600; color: var(--green); margin: 1px 0 2px; }
+
+.wk { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
+.wk li { margin-bottom: 3px; }

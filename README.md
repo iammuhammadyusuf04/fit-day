@@ -11,7 +11,9 @@ Barcha ma'lumotlar faqat telefonning o'zida (localStorage) saqlanadi.
 - **Shanba** — kardio: velotrenajor + ellips + eshkak
 - **Yakshanba** — dam
 
-Yuklama har 2 haftada oshadi (yondashuvlar, vaqt, interval). Istalgan kuni "Bugun" sahifasida boshqa mashg'ulotni tanlash mumkin.
+Har kuni faqat BITTA mashg'ulot bajariladi: "Bugun" bo'limida shu kunning mashg'uloti o'zi chiqadi ("Reja" bo'limi faqat butun haftani ko'rish uchun).
+Boshqa kuni borsangiz yoki boshqa mashg'ulot xohlasangiz, "Bugun" sahifasidagi tugmalardan (Kuch A, Kuch B, Kardio…) tanlang. Haftada 3 marta borsangiz: Kuch A → Kuch B → Kuch A.
+Yuklama har 2 haftada oshadi (yondashuvlar, vaqt, interval). Ilovaning ichida "Qanday foydalanish" qo'llanmasi bor (birinchi marta ochiq turadi).
 
 ## Animatsiyalar
 Har bir mashq uchun trenajorning o'zi va unda mashq qilayotgan odam animatsiya bilan ko'rsatiladi (37 ta mashq, 25 ta trenajor).

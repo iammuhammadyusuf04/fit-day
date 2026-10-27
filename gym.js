@@ -971,3 +971,14 @@ const FIRST_TIME = [
   ['🤝', 'Zal odobi', 'Trenajordan keyin sochiq bilan artib qo‘ying. Gantel va plastinalarni joyiga qaytaring. Band trenajorni kutib turing yoki "navbat necha?" deb so‘rang.'],
   ['⚠️', 'Xavfsizlik', 'O‘tkir og‘riq, bosh aylanishi yoki nafas qisilishi bo‘lsa — to‘xtang. Mushakda yengil charchoq va 1–2 kunlik og‘riq normal.'],
 ];
+
+// Ilovadan qanday foydalanish (Bugun sahifasining tepasida; birinchi marta ochiq turadi)
+const HOW_TO = [
+  ['1️⃣', 'Har kuni faqat BITTA mashg‘ulot', 'Hamma mashg‘ulotni bir kunda bajarmaysiz. Zalga kelganingizda “Bugun” bo‘limini oching — shu kunning mashg‘uloti o‘zi chiqadi va tayyor turadi.'],
+  ['2️⃣', 'Yuqoridagi tugmalar nima uchun?', '“Bugungi reja” — avtomatik tanlov, odatda aynan shuni bajarasiz, tugmalarni bosish shart emas. Boshqa tugmalar (Kuch A, Kuch B, Kardio…) faqat reja kunidan boshqa kuni kelsangiz yoki boshqa mashg‘ulot xohlasangiz kerak.'],
+  ['🗓', 'Haftada 3 marta borsangiz', 'Hafta kunlariga bog‘lanib qolmang: har safar zalga kelganda tugmalardan ketma-ket tanlang — Kuch A → Kuch B → Kuch A (keyingi hafta: Kuch B → Kuch A → Kuch B). Imkoni bo‘lsa, orada 1–2 marta kardio qo‘shing.'],
+  ['3️⃣', 'Mashqni o‘rganing', 'Trenajor rasmini bossangiz — animatsiya, trenajorni qanday sozlash va qanday bajarish chiqadi. Birinchi marta har bir trenajorni shu yerda ko‘rib oling, keyin zalda topasiz.'],
+  ['4️⃣', 'Bajaring va belgilang', 'Odatda 2 yondashuv (set) × 12 takror. Yondashuvlar orasida 60–90 soniya dam oling (⏱ tugmalari). Mashq tugagach, chap tomondagi doirani bosing. Hammasi belgilansa, kun bajarilgan hisoblanadi va 🔥 seriya o‘sadi.'],
+  ['5️⃣', 'Kardio kunlari', '“Taymer bilan boshlash” ni bosing — taymer tezlik, qiyalik va qarshilikni aytib boradi va animatsiya ko‘rsatadi.'],
+  ['ℹ️', 'Boshqa bo‘limlar', '“Reja” — butun haftani ko‘rish uchun (mashq shu yerda bajarilmaydi). “Mashqlar” — barcha trenajorlarni o‘rganish va “Zalga birinchi marta” qo‘llanmasi. “Vazn” — vazningizni yozib boring.'],
+];

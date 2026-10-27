@@ -2,7 +2,7 @@
 
 // ---------- Ma'lumotlar (faqat telefonda, localStorage) ----------
 const KEY = 'fitday.v1';
-const fresh = () => ({ startDate: null, height: '', goal: '', weights: [], done: {}, pick: {}, extra: {}, kg: {}, sound: true });
+const fresh = () => ({ startDate: null, height: '', goal: '', weights: [], done: {}, pick: {}, extra: {}, kg: {}, sound: true, helpSeen: false });
 const save = () => localStorage.setItem(KEY, JSON.stringify(S));
 let S;
 try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch { S = fresh(); }
@@ -139,6 +139,14 @@ function extrasCard(date) {
   return `<div class="card" style="margin-top:12px"><div class="row between"><h2>Qo‘shimcha mashqlar</h2><span class="muted">${n}/${ids.length}</span></div>${rows}</div>`;
 }
 
+// Ilovadan foydalanish qo‘llanmasi: birinchi marta ochiq, yopilgach faqat sarlavha qoladi
+function helpCard() {
+  const week = [1, 2, 3, 4, 5, 6, 0].map(d => `<li><b>${FULL[d]}</b> — ${LABEL[SCHEDULE[d]]}</li>`).join('');
+  return `<details class="card first" id="help" ${S.helpSeen ? '' : 'open'}><summary><h2>📖 Ilovadan qanday foydalanish</h2></summary>
+    ${HOW_TO.map(([i, t, d]) => `<div class="ft"><b>${i} ${t}</b><div class="muted">${d}</div></div>`).join('')}
+    <div class="ft"><b>📅 Hafta jadvali (har kun — bitta mashg‘ulot)</b><ul class="wk">${week}</ul></div></details>`;
+}
+
 function renderToday() {
   title.textContent = 'Bugungi mashq';
   const date = today();
@@ -146,9 +154,12 @@ function renderToday() {
   const type = picked || SCHEDULE[new Date().getDay()];
   const ex = exercises(type);
   const p = progress(date, type);
-  const chips = ['', ...TYPES].map(t => `<button class="chip ${picked === t ? 'on' : ''}" data-pick="${t}">${t ? NAMES[t] : 'Reja'}</button>`).join('');
-  let html = `<div class="chips">${chips}</div>
-    <div class="card"><div class="row between"><h2>${LABEL[type]}</h2><span class="muted">${p.n}/${p.total}</span></div>`;
+  const chips = ['', ...TYPES].map(t => `<button class="chip ${picked === t ? 'on' : ''}" data-pick="${t}">${t ? NAMES[t] : 'Bugungi reja'}</button>`).join('');
+  const dow = FULL[new Date().getDay()];
+  let html = helpCard() + `<p class="muted" style="margin:0 0 6px">Bugungi mashg‘ulot avtomatik tanlangan. Boshqa mashg‘ulot kerak bo‘lsagina bosing:</p>
+    <div class="chips">${chips}</div>
+    <div class="card"><div class="row between"><h2>${LABEL[type]}</h2><span class="muted">${p.n}/${p.total}</span></div>
+    <p class="muted" style="margin:2px 0 8px">📅 ${dow} · ${picked ? 'siz tanlagan mashg‘ulot' : 'rejadagi mashg‘ulot'}</p>`;
   if (type === 'R') {
     html += `<p>Bugun dam olish kuni 😴 Mushaklar tinch holatda o‘sadi. Ko‘proq suv iching va 7–8 soat uxlang.</p>
       <p class="muted">Xohlasangiz, tepadan mashg‘ulot tanlang yoki “Mashqlar” bo‘limidan qo‘shimcha mashq qo‘shing.</p></div>`;
@@ -191,6 +202,7 @@ function renderPlan() {
   const row = e => `<div class="prow">${thumb(e.scene)}<div class="grow"><div class="name">${e.name}</div><div class="eqn">🏋️ ${e.eq}</div><div class="muted">${e.amount}</div></div></div>`;
   const card = t => `<div class="card"><h2>${LABEL[t]}</h2><p class="muted">${daysOf(t)}</p>${exercises(t).map(row).join('')}</div>`;
   view.innerHTML = `
+    <div class="tip" style="margin-bottom:12px">ℹ️ Bu sahifa faqat <b>ko‘rish uchun</b>: butun haftada nima bo‘lishini ko‘rasiz. Mashqni bajarish uchun “Bugun” bo‘limiga o‘ting — u yerda faqat bugungi mashg‘ulot turadi.</div>
     <div class="card"><h2>Bu hafta</h2><div class="week">${cells}</div>
       <p class="muted">${daysOf('R')} — dam kuni. Yuklama har 2 haftada oshadi. Hozirgi daraja: ${level() + 1}/4</p></div>
     ${TYPES.map(card).join('')}
@@ -543,6 +555,9 @@ view.onclick = e => {
     $('file').click();
   }
 };
+
+// Qo‘llanma birinchi marta yopilganda eslab qolinadi (keyin yopiq turadi)
+view.addEventListener('toggle', e => { if (e.target.id === 'help' && !e.target.open && !S.helpSeen) { S.helpSeen = true; save(); } }, true);
 
 view.oninput = e => { if (e.target.id === 'libQ') { libQ = e.target.value; updateLib(); } };
 
