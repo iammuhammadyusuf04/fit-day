@@ -965,6 +965,7 @@ const FIRST_TIME = [
   ['👟', 'Nima olib borish kerak', 'Tagi tekis sport poyabzali, qulay kiyim, kichik sochiq, suv shishasi va shkafcha uchun qulf. Zalda sochiq bilan o‘zingizni va trenajorni artasiz.'],
   ['🎯', 'Birinchi mashg‘ulot', '45–60 daqiqadan oshirmang. Mashinalardan boshlang — ular harakatni o‘rgatadi va xavfsizroq. Har mashqdan 1–2 yondashuv yetarli. Hamma o‘z mashg‘uloti bilan band, hech kim sizga qarab turmaydi.'],
   ['🙋', 'Trenerdan so‘rang', 'Birinchi kuni trener yoki ma’muriyatdan zalni ko‘rsatib, trenajorlarni tanishtirib berishini so‘rang — ko‘p zallarda bu bepul. So‘rashdan uyalmang, hamma birinchi marta kelgan.'],
+  ['🗺', 'Zal zonalari', 'Zal odatda bir necha zonaga bo‘lingan: 1) Kardio — yo‘laklar, velotrenajorlar, ellips va eshkak trenajori. 2) Kuch mashinalari — o‘tirib bajariladigan, og‘irligi pin bilan tanlanadigan trenajorlar: boshlovchi uchun eng xavfsizi. 3) Erkin og‘irliklar — gantellar tokchasi, skameykalar, Smit mashinasi. 4) Gilam zonasi — cho‘zilish va qorin mashqlari. Ilovada har bir trenajor ochilganda uning qaysi zonada ekani yozilgan.'],
   ['🔥', 'Avval qizining', 'Har mashg‘ulotdan oldin 5 daqiqa yo‘lakda yuring yoki velotrenajor aylantiring.'],
   ['🔧', 'Trenajorni o‘zingizga sozlang', 'O‘rindiq balandligi va tayanchlarni sozlang. Og‘irlikni pin (temir tayoqcha) bilan plastinalar ustunidan tanlang — har doim eng yengilidan boshlang.'],
   ['🐢', 'Sekin va nazorat bilan', 'Ko‘tarish 2 soniya, tushirish 3 soniya. Texnika og‘irlikdan muhim.'],

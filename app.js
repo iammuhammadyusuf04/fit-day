@@ -266,7 +266,7 @@ function renderLib() {
 function renderWeight() {
   title.textContent = 'Vazn kundaligi';
   const w = [...S.weights].sort((a, b) => a.date.localeCompare(b.date));
-  const last = w.at(-1), first = w[0];
+  const last = w[w.length - 1], first = w[0];
   const diff = last && first ? last.kg - first.kg : 0;
   const goal = parseFloat(S.goal);
   let info = '';
@@ -301,7 +301,7 @@ function chart(w, goal) {
 
 function renderMe() {
   title.textContent = 'Profil';
-  const last = [...S.weights].sort((a, b) => a.date.localeCompare(b.date)).at(-1);
+  const sorted = [...S.weights].sort((a, b) => a.date.localeCompare(b.date)), last = sorted[sorted.length - 1];
   let bmi = '';
   const h = parseFloat(S.height) / 100;
   if (h && last) bmi = `<p>BMI: <b>${(last.kg / (h * h)).toFixed(1)}</b> <span class="muted">(18.5–24.9 — me’yor)</span></p>`;
